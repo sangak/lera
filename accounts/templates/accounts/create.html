@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+<div class="modal-header">
+    <h5 class="modal-title">{{ form_title }}</h5>
+    <button type="button" class="btn-close btn-close-modal" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    {% crispy form %}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-outline-dark-shades" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-sm btn-danger btn-submit disabled" id="btn-add-user" data-form-target="frm-add-account">{{  form_btn_submit }}</button>
+</div>

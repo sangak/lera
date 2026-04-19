@@ -1,0 +1,111 @@
+{% load static i18n %}
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+    <div class="sidebar-brand">
+        <a href="{% url 'dashboard:index' %}" class="brand-link w-100">
+            <img src="{% static 'img/logo-white.svg' %}"
+                    alt="{{ app_name.portal_app }} Logo"
+                    class="brand-image opacity-75 shadow mx-auto"
+            />
+        </a>
+    </div>
+
+    <div class="sidebar-wrapper d-flex flex-column justify-content-between">
+        <nav class="mt-2 d-flex flex-column justify-content-between">
+            <ul class="nav sidebar-menu flex-column flex-1" data-lte-toggle="treeview" role="navigation"
+                aria-label="Main navigation"
+                data-accordion="false"
+                id="navigation"
+            >
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="grommet-icons:projects" class="nav-icon"></iconify-icon>
+                        <p>Projects</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="tabler:credit-card-refund" class="nav-icon"></iconify-icon>
+                        <p>Fundraising</p>
+                    </a>
+                </li>
+                <li class="nav-header">Content Management System</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="streamline-plump:web" class="nav-icon"></iconify-icon>
+                        <p>Front page</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="tdesign:activity" class="nav-icon"></iconify-icon>
+                        <p>Program</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="fluent-emoji-high-contrast:call-me-hand" class="nav-icon"></iconify-icon>
+                        <p>{% trans 'Tentang Kami' %}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="streamline-plump:news-paper" class="nav-icon"></iconify-icon>
+                        <p>
+                            Berita & Artikel
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <iconify-icon icon="ion:newspaper-outline" class="nav-icon"></iconify-icon>
+                                <p>Berita</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <iconify-icon icon="ri:blogger-line" class="nav-icon"></iconify-icon>
+                                <p>Blog</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <iconify-icon icon="streamline-ultimate:paper-write" class="nav-icon"></iconify-icon>
+                                <p>Publikasi</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="bx:chat" class="nav-icon"></iconify-icon>
+                        <p>{% trans 'Hubungi Kami' %}</p>
+                    </a>
+                </li>
+                <li class="nav-header">Settings</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <iconify-icon icon="tabler:database" class="nav-icon"></iconify-icon>
+                        <p>{% trans 'Master Data' %}</p>
+                    </a>
+                </li>
+                {% if user.is_admin %}
+                <li class="nav-header">User Accounts</li>
+                <li class="nav-item">
+                    <a data-href="{% url 'accounts:user-management' %}" class="nav-link{% if uri == 'user-management' %} active{% endif %}">
+                        <iconify-icon icon="streamline-ultimate:multiple-users-1" class="nav-icon"></iconify-icon>
+                        <p>{% trans 'User Management' %}</p>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item position-absolute bottom-0 mb-2" style="right: 10px; left: 10px;">
+                    <a data-href="{% url 'accounts:logout' %}" class="nav-link">
+                        <iconify-icon icon="ri:logout-circle-line" class="nav-icon"></iconify-icon>
+                        <p>{{ menu_setting.sign_out }}</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

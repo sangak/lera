@@ -1,0 +1,34 @@
+{% load crispy_forms_field %}
+
+<div class="form-group custom-checkbox">
+    <label class="form-check-label">
+        <div class="checkbox-wrapper-outer" id="checkbox_outer_{{ field.field.widget.attrs.id }}"
+            data-bs-toggle="{{ field.field.widget.attrs.data_toggle }}"
+             data-bs-target="{{ field.field.widget.attrs.data_target }}"
+             role="{{ field.field.widget.attrs.role }}"
+             data-change-display="{{ field.field.widget.attrs.change_display }}"
+             aria-controls="{{ field.field.widget.attrs.aria_controls }}"
+             data-ele-id="{{ field.field.widget.attrs.id }}"
+             data-others="{{ field.field.widget.attrs.others }}"
+             data-ensure-d-none="{{ field.field.widget.attrs.ensure_d_none }}"
+             data-condition-d-none="{{ field.field.widget.attrs.condition_d_none }}"
+        >
+            <label class="checkbox-wrapper w-100">
+                {% crispy_field field 'class' 'checkbox-input' %}
+                <div class="checkbox-tile">
+                    <span class="checkbox-icon mx-3 {{ field.field.widget.attrs.icon }}">
+                    </span>
+                    <div class="d-flex flex-column justify-content-start align-self-center">
+                        <h6 class="checkbox-label">{{ field.label }}</h6>
+                        <p class="mb-0 checkbox-label">{{ field.help_text }}</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </label>
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+</div>

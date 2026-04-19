@@ -1,0 +1,10 @@
+{% load pengaturan i18n %}
+
+<footer class="app-footer">
+    <div class="float-end d-none d-sm-inline">{{ app_name.tagline }}</div>
+    <strong>
+        Copyright &copy; {% get_current_year %}&nbsp;
+        <a href="{% url 'landing:index' %}" class="text-decoration-none">{{ app_name.portal_app }}</a>.
+    </strong>
+    All rights reserved.
+</footer>

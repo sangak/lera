@@ -1,0 +1,73 @@
+{% load static pengaturan i18n %}
+<footer class="footer-landing">
+    <div class="container">
+        <div class="footer-border">
+            <div class="row py-7">
+                <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0 me-0 me-lg-5">
+                    <div class="d-flex flex-row flex-md-column">
+                        <img class="me-3 mb-3 mb-lg-0 brand-logo" src="{% static 'img/logo-white.svg' %}" alt="logo"
+                             style="width: 110px;">
+                        <p class="footer-title mt-5">
+                            {% trans 'Ikuti informasi kami di media sosial' %}<br><span
+                                class="text-light fw-semibold">{{ app_name.tagline }}</span></p>
+                    </div>
+                    <ul class="list-social-media">
+                        <li>
+                            <a href="#">
+                                <iconify-icon icon="gg:facebook" width="24" height="24"></iconify-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <iconify-icon icon="gg:instagram" width="24" height="24"></iconify-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <iconify-icon icon="akar-icons:linkedin-fill" width="24" height="24"></iconify-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <iconify-icon icon="garden:twitter-stroke-16" width="22" height="22"></iconify-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <iconify-icon icon="mage:tiktok" width="24" height="24"></iconify-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg py-5 mb-sm-0">
+                    <span class="text-cap fw-bold">{% trans 'Lebih Lanjut Tentang LERA' %}</span>
+                    <ul class="list-menu">
+                        <li><a href="{% url 'landing:program' %}">{% trans 'Program' %}</a></li>
+                        <li><a href="{% url 'landing:about' %}">{% trans 'Tentang Kami' %}</a></li>
+                        <li><a href="#">{% trans 'Berita & Artikel' %}</a></li>
+                        <li><a href="{% url 'landing:contact' %}">{% trans 'Hubungi Kami' %}</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg py-5 mb-sm-0">
+                    <span class="text-cap">Support</span>
+                    <ul class="list-menu">
+                        <li><a href="#">{% trans 'Bantuan' %}</a></li>
+                        <li><a href="#">{% trans 'Keamanan Data' %}</a></li>
+                        <li><a href="#">{% trans 'Privasi dan Kebijakan' %}</a></li>
+                        <li><a href="#">{% trans 'Syarat & Ketentuan' %}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-md-center py-3">
+            <div class="col-md mb-3 mb-md-0">
+                <ul class="list-footer">
+                    <li><a href="#">Privacy and Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li>© {% get_current_year %} {{ app_name.portal_app }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

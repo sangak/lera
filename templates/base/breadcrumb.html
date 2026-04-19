@@ -1,0 +1,28 @@
+{% load static i18n %}
+<section class="bg-half-170 d-table w-100 img-load" data-background-image="{% static 'img/bg/about.jpg' %}">
+    <div class="bg-overlay bg-gradient-overlay"></div>
+    <div class="container">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-12">
+                <div class="title-heading text-center">
+                    {% if breadcrumb_subtitle is not None %}<small class="text-white-50 mb-1 fw-medium mx-auto">{{ breadcrumb_subtitle }}</small>{% endif %}
+                    {% if breadcrumb_title is not None %}<h1 class="heading fw-semibold mb-0 page-heading text-white title-dark">{{ breadcrumb_title }}</h1>{% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="position-middle-bottom">
+            <nav aria-label="breadcrumb" class="d-block">
+                <ul class="breadcrumb breadcrumb-muted mb-0 p-0">
+                    {% for breadcrumb in breadcrumbs %}
+                        {% if not forloop.last %}
+                            <li class="breadcrumb-item"><a href="{{ breadcrumb.link }}">{{ breadcrumb.title }}</a></li>
+                        {% else %}
+                            <li class="breadcrumb-item active text-start" aria-current="page">{{ breadcrumb.title }}</li>
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>

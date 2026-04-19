@@ -1,0 +1,45 @@
+{% load static i18n %}
+<header id="topnav" class="defaultscroll sticky">
+    <div class="container align-items-center">
+        <a class="logo" data-href="{% url 'landing:index' %}">
+            <span class="logo-light-mode">
+                <img src="{% static 'img/logo-dark.svg' %}" class="l-dark" alt="">
+                <img src="{% static 'img/logo-light.svg' %}" class="l-light" alt="">
+            </span>
+        </a>
+
+        <div class="menu-extras">
+            <div class="menu-item">
+                <a class="navbar-toggle" id="isToggle" onclick="theme.helpers.toggleMenu()">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div id="navigation">
+            <ul class="navigation-menu nav-right flex-grow-1 nav-light">
+                <li{% if uri == 'program' %} class="active"{% endif %}>
+                    <a data-href="{% url 'landing:program' %}" class="sub-menu-item">{% trans 'Program' %}</a>
+                </li>
+                <li{% if uri == 'about-us' %} class="active"{% endif %}>
+                    <a data-href="{% url 'landing:about' %}" class="sub-menu-item">{% trans 'Tentang Kami' %}</a>
+                </li>
+                <li class="has-submenu parent-parent-menu-item menu">
+                    <a href="javascript:void(0)">{% trans 'Berita & Artikel' %}<span class="menu-arrow"></span></a>
+                    <ul class="submenu">
+                        <li><a data-href="#" class="sub-menu-item">Berita</a></li>
+                        <li><a data-href="#" class="sub-menu-item">Blog</a></li>
+                        <li><a data-href="#" class="sub-menu-item">Publikasi</a></li>
+                    </ul>
+                </li>
+                <li{% if uri == 'contact-us' %} class="active"{% endif %}>
+                    <a data-href="{% url 'landing:contact' %}" class="sub-menu-item">{% trans 'Hubungi Kami' %}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

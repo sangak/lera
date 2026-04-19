@@ -1,0 +1,167 @@
+{% extends 'base/index.html' %}
+{% load static i18n %}
+{% block contents %}
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 p-4 text-center rounded features features-classic feature-primary">
+                        <iconify-icon icon="streamline-freehand:design-process-drawing-board-education" class="icon mx-auto display-4"></iconify-icon>
+                        <div class="content mt-3">
+                            <a class="title title-dark h4">
+                                LERA Edu-Bright
+                            </a>
+                            <p class="text-muted mb-0 mt-3">
+                                {% trans 'Membangun kapasitas SDM lokal yang kompetitif' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 p-4 text-center rounded features features-classic feature-primary">
+                        <iconify-icon icon="fluent:people-community-24-regular" class="icon mx-auto display-4"></iconify-icon>
+                        <div class="content mt-3">
+                            <a class="title title-dark h4">
+                                {% trans 'LERA Mandiri' %}
+                            </a>
+                            <p class="text-muted mb-0 mt-3">
+                                {% trans 'Menciptakan kemandirian ekonomi dari tingkat rumah tangga' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 p-4 text-center rounded features features-classic feature-primary">
+                        <iconify-icon icon="healthicons:resilient-and-migration-sensitive-health-system-outline" class="icon mx-auto display-4"></iconify-icon>
+                        <div class="content mt-3">
+                            <a class="title title-dark h4">
+                                {% trans 'LERA Resilient' %}
+                            </a>
+                            <p class="text-muted mb-0 mt-3">
+                                {% trans 'Mitigasi risiko dan respon cepat terhadap krisis yang terjadi.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 p-4 text-center rounded features features-classic feature-primary">
+                        <iconify-icon icon="streamline:health-care-2" class="icon mx-auto display-4"></iconify-icon>
+                        <div class="content mt-3">
+                            <a data-href="#" class="title title-dark h4">
+                                LERA Health-Care
+                            </a>
+                            <p class="text-muted mb-0 mt-3">
+                                {% trans 'Meningkatkan kualitas hidup dan ketersediaan akses kesehatan' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-6">
+                    <div class="section text-center mb-4 pb-2">
+                        <h2 class="title mb-b fw-semibold">
+                            {% trans 'Dampak yang Kami Hasilkan' %}
+                        </h2>
+                        <p>
+                            {% trans 'Kami tidak mengukur keberhasilan hanya dari sebarapa banyak bantuan yang tersalurkan, tapi kami berkomitmen menghasilkan dampak nyata melalui tiga pilar utama:' %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-4 mt-4 pt-2">
+                    <div class="card features features-classic feature-primary pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
+                        <div class="fea-icon bg-soft rounded-md mx-auto p-6">
+                            <iconify-icon icon="fluent:people-communication-48-regular" class="display-4"></iconify-icon>
+                        </div>
+                        <div class="content mt-4">
+                            <h4>{% trans 'Dampak Sosial' %}</h4>
+                            <p class="text-muted">
+                                {% trans 'Kami berfokus pada penguatan kapasitas manusia. Melalui program LERA, masyarakat mengalami peningkatan pendapatan yang stabil, akses pendidikan yang lebih baik, serta tumbuhnya ketrampilan baru yang meningkatkan taraf hidup dan partisipasi sosial secara inklusif.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 mt-4 pt-2">
+                    <div class="card features features-classic feature-primary pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
+                        <div class="fea-icon bg-soft rounded-md mx-auto p-6">
+                            <iconify-icon icon="proicons:leaf-three" class="display-4"></iconify-icon>
+                        </div>
+                        <div class="content mt-4">
+                            <h4>{% trans 'Dampak Lingkungan' %}</h4>
+                            <p class="text-muted">
+                                {% trans 'Kami membantu mitra dan masyarakat memitigasi risiko lingkungan. Dampak yang kami hasilkan mencakup pengelolaan sumber daya alam yang lebih bertanggung jawab, peningkatan ketahanan komunitas terhadap perubahan iklim, serta upaya perlindungan ekosistem demi masa depan yang lebih hijau.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 mt-4 pt-2">
+                    <div class="card features features-classic feature-primary pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
+                        <div class="fea-icon bg-soft rounded-md mx-auto p-6">
+                            <iconify-icon icon="gravity-ui:chart-line" class="display-4"></iconify-icon>
+                        </div>
+                        <div class="content mt-4">
+                            <h4>{% trans 'Dampak Ekonomi & Bisnis' %}</h4>
+                            <p class="text-muted">
+                                {% trans 'Kami menciptakan nilai bersama (<em>shared value</em>) bagi dunia usaha. Investasi CSR yang kami kelola membantu perusahaan mengurangi risiko operasional, meningkatkan efisiensi biaya melalui rantai pasok lokal yang kuat, serta membangun reputasi perusahaan yang kredibel.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <img data-src="{% static 'img/blog/11.jpg' %}" class="img-fluid img-load rounded shadow border" alt="">
+                </div>
+                <div class="col-lg-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <h2 class="title mb-4 fw-semibold">
+                        {% trans 'Mengapa Dampak Kami Berbeda?' %}
+                    </h2>
+                    <ul class="list-checked list-checked-bg-dark text-muted mb-0">
+                        <li class="list-checked-item">
+                            {% trans '<strong>Terukur:</strong> Menggunakan metodologi <strong><em>Social Return on Investment</em> (SROI)</strong>.' %}
+                        </li>
+                        <li class="list-checked-item">
+                            {% trans '<strong>Berbasis Bukti:</strong> Setiap capaian didukung oleh data lapangan yang akurat.' %}
+                        </li>
+                        <li class="list-checked-item">
+                            {% trans '<strong>Berkelanjutan:</strong> Program dirancang agar tetap berjalan secara mandiri bahkan setelah masa intervensi selesai.' %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section py-0">
+        <div class="container-fluid px-0">
+            <div class="py-5 position-relative img-load" data-background-image="{% static 'img/cta02.jpg' %}">
+                <div class="bg-overlay bg-gradient-overlay"></div>
+                <div class="container my-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-md-7">
+                            <h4 class="h2 mb-0 text-warning fw-medium">
+                                {% trans 'Menebar Kebaikan, Memberdayakan Masa Depan' %}
+                            </h4>
+                            <p class="lead text-white-70">
+                                {% trans 'Dari pendidikan anak bangsa hingga setetes darah untuk sesama, setiap aksi Anda adalah harapan bagi mereka.' %}
+                            </p>
+                        </div>
+                        <div class="col-lg-4 col-md-5 text-end text-md-center mt-4 mt-sm-0">
+                            <a href="javascript:void(0)" class="btn btn-warning btn-lg px-5">{% trans 'Gabung' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

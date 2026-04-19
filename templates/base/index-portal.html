@@ -1,0 +1,139 @@
+{% load static i18n %}
+<!doctype html>{% get_current_language as bahasa %}
+<html lang="{{ bahasa }}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{{ page_title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    {% if uri %}
+        {% if has_meta %}
+            {% for meta in meta_name %}
+                <meta name="{{ meta.name }}" content="{{ meta.content|safe }}">
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% block stylesheet %}{% endblock %}
+    <link rel="preload" href="{% static 'css/portal-style.css' %}" as="style" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/portal-style.css' %}" />
+</head>
+<body class="{{ css_body }}">
+    {% if not fullscreen %}<div class="app-wrapper">{% endif %}
+        {% if show_navbar %}
+            {% include 'base/portal/header-portal.html' %}
+        {% endif %}
+        {% if show_sidebar %}
+            {% include 'base/portal/sidebar.html' %}
+        {% endif %}
+        {% if not fullscreen %}<main class="app-main">{% endif %}
+            {% if app_header %}
+                <div class="app-content-header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6 d-flex align-items-center"><h3 class="mb-0">{{ breadcrumb_title|title }}</h3></div>
+                            {% if has_breadcrumb %}
+                                <div class="col-sm-6">
+                                    {% if not custom_breadcrumb %}
+                                    <ol class="breadcrumb float-sm-end">
+                                        <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                    </ol>
+                                   {% else %}
+                                        <div class="breadcrumb float-sm-end">
+                                            {% block custom_breadcrumb %}{% endblock %}
+                                        </div>
+                                   {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        {% if not fullscreen %}</main>{% endif %}
+        {% if show_footer %}
+            {% include 'base/portal/footer.html' %}
+        {% endif %}
+    {% if not fullscreen %}</div>{% endif %}
+    {% if show_sidebar %}
+    {% if bootstrap_modal_forms %}
+        {% include 'base/portal/modal-bootstrap-forms.html' %}
+    {% endif %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
+      crossorigin="anonymous"
+    ></script>
+    {% endif %}
+    <script src="{% static 'js/core.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/theme.min.js' %}"></script>
+    {% block javascript %}{% endblock %}
+    {% if show_sidebar %}
+    <script>
+        const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+        const Default = {
+            scrollbarTheme: 'os-theme-light',
+            scrollbarAutoHide: 'leave',
+            scrollbarClickScroll: true,
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+            if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
+                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                    scrollbars: {
+                        theme: Default.scrollbarTheme,
+                        autoHide: Default.scrollbarAutoHide,
+                        clickScroll: Default.scrollbarClickScroll,
+                    },
+                });
+            }
+        });
+        htmx.on("messages", (e) => {
+            theme.helpers.showAlert(e.detail.value[0])
+        });
+
+        document.body.addEventListener("htmx:configRequest", (ev) => {
+            ev.detail.headers["X-CSRFToken"] = "{{ csrf_token }}"
+        });
+        {% if messages %}
+            {% for message in messages %}
+                let tag = ["success", "info", "warning"],
+                    tags = "{{ message.tags }}";
+                var chrTag,
+                    msg;
+
+                for (var i = 0; i < tag.length; i++) {
+                    if (tags.includes(tag[i])) {
+                        chrTag = `${tag[i]}`
+
+                        msg = {
+                            "tag": chrTag,
+                            "message": "{{ message.message }}",
+                            "title": tags.replace(chrTag, '').trim()
+                        }
+                        theme.helpers.showAlert(msg)
+                    }
+                }
+            {% endfor %}
+        {% endif %}
+    </script>
+    {% endif %}
+    {% if bootstrap_modal_forms %}
+        <script src="{% static 'js/bootstrap5.modal.forms.min.js' %}"></script>
+    {% endif %}
+  </body>
+</html>

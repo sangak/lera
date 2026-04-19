@@ -1,0 +1,58 @@
+{% load crispy_forms_field i18n %}
+<div id="div_{{ field.auto_id }}" {% if wrapper_class %}class="{{ wrapper_class }}"{% endif %}{% if 'form-horizontal' in form_class %} row{% endif %}{% if form_group_wrapper_class %} class="{{ form_group_wrapper_class }}"{% endif %}{% if form_show_errors and field.errors %} has-danger{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}>
+    {% if field.label and form_show_labels %}
+        <label for="{{ field.id_for_label }}" class="{% if 'form-horizontal' in form_class %}col-form-label {% else %}form-label{% endif %}{{ label_class }}{% if field.field.required %} requiredField{% endif %}">
+            {{ field.label }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    <div class="custom-field">
+        {% if field.field.widget.attrs.charges %}
+            <div class="row">
+                <div class="col-5">
+                    {% if crispy_prepended_text %}
+                        <div class="input-group{% if input_size %}{{ input_size }}{% endif %}">
+                            <span class="input-group-text prepend">{{ crispy_prepended_text }}</span>
+                    {% endif %}
+                    {% if field.errors %}
+                        {% crispy_field field 'class' 'form-control is-invalid input-length' %}
+                    {% else %}
+                        {% crispy_field field 'class' 'form-control input-length' %}
+                    {% endif %}
+                    {% if field.field.widget.attrs.chars >= 0 %}
+                        <div id="field-length">
+                            <span>{{ field.field.widget.attrs.chars }} / {{ field.field.widget.attrs.maxlength }}</span>
+                        </div>
+                    {% endif %}
+                    {% if crispy_prepended_text %}</div>{% endif %}
+                </div>
+                <div class="col-7 d-flex justify-content-start charges d-none">
+                    <div class="border-start border-1 ps-3 d-flex align-items-center">
+                        <small class="text-info">{% trans 'Harga yang diterima kontributor:' %} <span class="fw-semibold text-info">Rp</span></small> <span id="amount-receive" class="small fw-semibold ms-1 text-info"></span>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            {% if field.errors %}
+                {% crispy_field field 'class' 'form-control is-invalid input-length' %}
+            {% else %}
+                {% crispy_field field 'class' 'form-control input-length' %}
+            {% endif %}
+        {% endif %}
+
+        {% if field.field.widget.attrs.chars >= 0 %}
+            <div id="field-length">
+                <span>{{ field.field.widget.attrs.chars }} / {{ field.field.widget.attrs.maxlength }}</span>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if not help_text_inline %}
+        {% include 'bootstrap5/layout/help_text.html' %}
+    {% endif %}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span class="error mt-1">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+</div>

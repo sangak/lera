@@ -1,0 +1,64 @@
+{% extends 'base/index.html' %}
+{% load static i18n crispy_forms_tags %}
+
+{% block contents %}
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="title mb-4 fw-semibold">
+                        {% trans 'Mari Bangun Lingkar Kebaikan Bersama' %}
+                    </h2>
+                    <p class="text-dark-shades mb-4">
+                        {% trans 'Apakah Anda mewakili korporasi yang ingin mentransformasi strategi CSR, atau individu yang ingin mendedikasikan waktu sebagai relawan? Kami siap mendengarkan dan berkolaborasi.' %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-start column-gap-0 column-gap-lg-4">
+                <div class="col-md-4">
+                    <div class="card border-0 text-center features feature-clean bg-transparent">
+                        <div class="content mt-3">
+                            <h5 class="fw-semibold">
+                                {% trans 'Konsultasi Program & ESG' %}
+                            </h5>
+                            <p class="text-muted">
+                                {% trans 'Sampaikan kebutuhan strategis perusahaan Anda, mulai dari <em>Risk Assessment</em> hingga pelaporan dampak SROI' %}
+                            </p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <p class="text-primary lh-1 mb-0">
+                                    <i class="bi bi-envelope"></i>
+                                    <a href="mailto:partnership@lera@or.id" class="ms-1">partnership@lera.or.id</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-0 text-center features feature-clean bg-transparent">
+                        <div class="content mt-3">
+                            <h5 class="fw-semibold">
+                                {% trans 'Alamat Kantor:' %}
+                            </h5>
+                            <address>
+                                Jl. Langgar No. 12A, Jagakarsa, Lenteng Agung<br/>
+                                Jakarta Selatan, 12870
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="custom-form">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+{% endblock %}

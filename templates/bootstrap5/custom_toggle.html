@@ -1,0 +1,19 @@
+{% load crispy_forms_field %}
+<div class="form-check form-switch mb-3">
+    <div class="d-flex justify-content-start align-items-center flex-row order-1">
+    {% crispy_field field 'class' 'form-check-input' %}
+        <div class="mt-0 ms-2">
+            <label class="form-check-label fw-semibold" for="{{ field.id_for_label }}">
+                {{ field.label|safe }}
+            </label>
+            {% if field.help_text %}
+                <div id="hint_{{ field.auto_id }}" class="form-text mt-0">{{ field.help_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+</div>

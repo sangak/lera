@@ -1,0 +1,56 @@
+{% extends 'base/index-portal.html' %}
+{% load render_table from django_tables2 %}
+{% block content %}
+    <div class="app-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header pe-0">
+                            <div class="row d-flex w-100 justify-content-between align-items-center">
+                                <div class="col-md-9">
+                                    {% if filter %}
+                                        <div class="w-100">
+                                            <form method="get" action="" id="frm-filter-resources">
+                                                {{ filter.form }}
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <a href="#" class="btn btn-sm btn-link" title="refresh" style="vertical-align: middle">
+                                        <iconify-icon icon="charm:refresh" class="d-flex align-self-center h6 mb-0"></iconify-icon>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger px-3 me-n-2 bootstrap-modal" id="btnAddUser" data-form-url="{% url 'accounts:create' %}">Pengguna Baru</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="data-table">
+                                {% render_table table %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        const myModal = document.getElementById('modal');
+        myModal.addEventListener('show.bs.modal', function (event) {
+            document.querySelectorAll('.need-validate').forEach(item => {
+                const id = item.getAttribute('id');
+                theme.helpers.pristineValidate.init(id, 'btn-add-user');
+            })
+            document.querySelectorAll('.input-length').forEach((element) => {
+                theme.helpers.maximumInputLength(element);
+            });
+
+            const btn = document.querySelector('.btn-submit');
+            theme.helpers.submitForm(btn);
+        })
+    </script>
+{% endblock %}

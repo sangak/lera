@@ -1,0 +1,77 @@
+{% load static i18n %}
+<!DOCTYPE html>{% get_current_language as bahasa %}
+<html lang="{{ bahasa }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ page_title }}</title>
+    {% if uri %}
+        {% if has_meta %}
+            {% for meta in meta_name %}
+                <meta name="{{ meta.name }}" content="{{ meta.content|safe }}">
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    {% block stylesheet %}{% endblock %}
+</head>
+<body{% if css_body is not None %} class="{{ css_body }}"{% endif %}{% if body_id is not None %} id="{{ body_id }}"{% endif %}>
+    {% if not full_screen %}
+        {% if show_navbar and navbar_type == 'main' %}
+            {% include 'base/header.html' %}
+        {% elif show_navbar and navbar_type == 'center' %}
+            {% include 'base/header-center.html' %}
+        {% elif show_navbar and navbar_type == 'portal' %}
+            {% include 'base/header-portal.html' %}
+        {% endif %}
+    {% endif %}
+
+    {% if has_breadcrumb %}
+        {% include 'base/breadcrumb.html' %}
+    {% endif %}
+    {% block contents %}{% endblock %}
+
+    {% if not full_screen %}
+        {% if mixins == 'landing' %}
+            {% include 'base/footer_landing.html' %}
+        {% endif %}
+    {% endif %}
+    <script src="{% static 'js/core.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/pristine.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    {% block javascript %}{% endblock %}
+    <script>
+        htmx.on("message", (e) => {
+            theme.helpers.showAlert(e.detail.value[0]);
+        });
+
+        document.body.addEventListener("htmx:configRequest", (ev)=> {
+            ev.detail.headers["X-CSRF-TOKEN"] = "{{ csrf_token }}";
+        })
+
+        {% if messages %}
+            {% for message in messages %}
+                let tag = ["success", "info", "warning"],
+                    tags = "{{ message.tags }}";
+                var chrTag,
+                    msg;
+
+                for (var i = 0; i < tag.length; i++) {
+                    if (tags.includes(tag[i])) {
+                        chrTag = `${tag[i]}`
+
+                        msg = {
+                            "tag": chrTag,
+                            "message": "{{ message.message }}",
+                            "title": tags.replace(chrTag, '').trim()
+                        }
+                        theme.helpers.showAlert(msg)
+                    }
+                }
+            {% endfor %}
+        {% endif %}
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base/index-portal.html' %}
+{% load static i18n crispy_forms_tags %}
+{% block content %}
+    <div class="login-box">
+        <div class="login-logo text-center mb-5">
+            <a data-href="{%  url 'landing:index' %}">
+                <img src="{% static 'img/logo-dark.svg' %}" class="w-50" alt="logo">
+            </a>
+        </div>
+        <div class="card card-outline card-primary">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">{% trans 'Silahkan masuk ke dalam sistem' %}</p>
+                {% crispy form %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

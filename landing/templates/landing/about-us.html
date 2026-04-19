@@ -1,0 +1,166 @@
+{% extends 'base/index.html' %}
+{% load static i18n %}
+{% block contents %}
+    <section class="section">
+        <div class="container">
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <img data-src="{% static 'img/about.jpg' %}" class="img-fluid img-load rounded shadow border" alt="">
+                </div>
+                <div class="col-lg-7 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="section-title ms-lg-5">
+                        <h2 class="title mb-4 fw-semibold">
+                            {% trans 'Tentang Lingkar Lentera Raya' %}
+                        </h2>
+                        <p>
+                            {% trans '<span class="fw-bold">Lingkar Lentera Raya (LERA)</span> adalah organisasi pengembangan sosial dan keberlanjutan yang berfokus pada penguatan kesetaraan pembangunan di Indonesia. Kami bukan sekadar pelaksana filantropi; kami adalah mitra strategis yang mengintegrasikan investasi Corporate Social Responsibility (CSR) atau Tanggung Jawab Sosial dan Lingkungan (TJSL) perubahan dengan kebutuhan nyata masyarakat dan lingkungan.' %}
+                        </p>
+                        <p>
+                            {% trans 'Dengan semangat persatuan untuk menjadi secercah cahaya di tengah tantangan kemanusiaan. Kami percaya bahwa tidak seharusnya berjalan sendiri-sendiri, melainkan harus membentuk sebuah <span class="fw-bold">"Lingkar"</span>—sebuah ekosistem yang saling terhubung, menguatkan, dan berkelanjutan.' %}
+                        </p>
+                        <p>
+                            {% trans 'Kami memahami bahwa CSR bukan sekedar donasi sekali lepas. Pendekatan LERA tidak berbasis pada kegiatan filantropi semata, namun lebih jauh mengintegrasikan pendekatan profesional sektor pembangunan dengan kebutuhan praktis dunia usaha.' %}
+                        </p>
+                        <p>
+                            {% trans 'Kami memastikan bahwa investasi CSR Anda tidak hanya memenuhi kewajiban regulasi, tetapi juga menciptakan nilai bisnis, sosial, dan lingkungan secara berkelanjutan (<em><strong>Creating Shared Value</strong></em>).' %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow border p-4 rounded features features-classic feature-primary">
+                        <img data-src="{% static 'img/charity/news02.jpg' %}" class="img-fluid img-load rounded shadow border" alt="" style="object-fit: fill;">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card shadow border p-4 rounded features features-classic feature-primary">
+                        <img data-src="{% static 'img/charity/news01.jpg' %}" class="img-fluid img-load rounded shadow border" alt="" style="object-fit: fill;">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-lg-0 pt-lg-0">
+                    <div class="card shadow border p-4 rounded features features-classic feature-primary">
+                        <img data-src="{% static 'img/charity/news03.jpg' %}" class="img-fluid img-load rounded shadow border" alt="" style="object-fit: fill;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-between">
+                <div class="col-lg-6">
+                    <h2 class="title mb-4 fw-semibold">
+                        {% trans 'Keahlian Tim Kami' %}
+                    </h2>
+                    <p>
+                        {% trans 'Didirikan oleh para praktisi kemanusiaan dan pembangunan, akademisi, dan ahli bersertifikasi <strong>BNSP</strong>, tim kami memiliki rekam jejak panjang di lembaga internasional dan multilateral dalam bidang:' %}
+                    </p>
+                    <ul class="list-checked-bg-primary list-unstyled mt-4">
+                        <li class="list-checked-item">
+                            {% trans 'Pemberdayaan Ekonomi Lokal dan Masyarakat' %}
+                        </li>
+                        <li class="list-checked-item">
+                            {% trans 'Manajemen Risiko Bencana & Respon Kemanusiaan' %}
+                        </li>
+                        <li class="list-checked-item">
+                            {% trans 'MEAL (Monitoring, Evaluation, Accountability, and Learning' %}
+                        </li>
+                        <li class="list-checked-item">
+                            {% trans 'Penelitian Sosial & Pembangunan Berbasis Bukti' %}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 col-md-6">
+                    <img data-src="{% static 'img/charity/cause02.jpg' %}" class="img-fluid img-load rounded shadow border" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-12 text-center">
+                    <h2 class="title mb-4 fw-semibold">
+                        {% trans 'Kemitraan Strategis' %}
+                    </h2>
+                    <p>
+                        {% trans 'LERA hadir sebagai navigator bagi mitra untuk memastikan investasi Anda Berdampak dan Bertanggung Jawab' %}
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card features feature-primary features-modern pt-4 px-3 pb-2 text-center shadow-none border-0">
+                        <iconify-icon icon="game-icons:orbit" class="mx-auto display-5 mb-3 text-primary"></iconify-icon>
+                        <div>
+                            <h4>
+                                {% trans 'Penilaian Risiko Sosial & Lingkungan' %}
+                            </h4>
+                            <p class="text-dark-shades">
+                                {% trans 'Identifikasi dini potensi tantangan di lapangan untuk menjaga stabilitas operasional perusahaan.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card features feature-primary features-modern pt-4 px-3 pb-2 text-center shadow-none border-0">
+                        <iconify-icon icon="fluent:box-search-16-regular" class="mx-auto display-5 mb-3 text-primary"></iconify-icon>
+                        <div>
+                            <h4>
+                                {% trans 'Due Diligence Sosial & Lingkungan' %}
+                            </h4>
+                            <p class="text-dark-shades">
+                                {% trans 'Analisis mendalam untuk memastikan kepatuhan dan standar etika dalam setiap rantai nilai proyek.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card features feature-primary features-modern pt-4 px-3 pb-2 text-center shadow-none border-0">
+                        <iconify-icon icon="pajamas:nature" class="mx-auto display-5 mb-3 text-primary"></iconify-icon>
+                        <div>
+                            <h4>
+                                {% trans 'Pengembangan Strategi ESG' %}
+                            </h4>
+                            <p class="text-dark-shades">
+                                {% trans 'Perancangan peta jalan (<em>roadmap</em>) lingkungan, sosial, dan tata kelola yang relevan dengan tren pasar global.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card features feature-primary features-modern pt-4 px-3 pb-2 text-center shadow-none border-0">
+                        <iconify-icon icon="carbon:sustainability" class="mx-auto display-5 mb-3 text-primary"></iconify-icon>
+                        <div>
+                            <h4>
+                                {% trans 'Monitor Kinerja Keberlanjutan' %}
+                            </h4>
+                            <p class="text-dark-shades">
+                                {% trans 'Pengawasan berkala  untuk memastikan program berjalan sesuai koridor dan standar efisiensi yang ditetapkan.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="card features feature-primary features-modern pt-4 px-3 pb-2 text-center shadow-none border-0">
+                        <iconify-icon icon="ph:chart-line-bold" class="mx-auto display-5 mb-3 text-primary"></iconify-icon>
+                        <div>
+                            <h4>
+                                {% trans 'Pelaporan Dampak Investasi' %}
+                            </h4>
+                            <p class="text-dark-shades">
+                                {% trans 'Penyusunan laporan komprehensif yang kredibel untuk menunjukkan akuntabilitas hasil kepada pemangku kepentingan.' %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

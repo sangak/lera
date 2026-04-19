@@ -1,0 +1,11 @@
+{% load crispy_forms_field %}
+<div class="input-group-merge" id="select-field">
+    {% if field|is_select %}
+        <span class="select-field wd-55">{% crispy_field field 'class' 'form-control' %}</span>
+    {% endif %}
+    {% if not field|is_select %}
+    <div class="form-text">
+        {% crispy_field field 'class' 'form-control' %}
+    </div>
+    {% endif %}
+</div>
