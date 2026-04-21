@@ -6,6 +6,8 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.csrf import csrf_exempt
 from django_tables2 import SingleTableMixin
 from django_tables2.paginators import LazyPaginator
+from cms.models import Menu
+from lera.contents import contents
 from lera.helpers import get_session
 from lera.variables import LABEL_TEXT, menu_setting, app_name
 
@@ -120,6 +122,7 @@ class GetObjHxMixin(object):
 
 
 class DefaultMixin(object):
+    previous = None
     template_name = 'base/index.html'
 
     def __init__(self, *args, **kwargs):
@@ -128,6 +131,12 @@ class DefaultMixin(object):
         self.page_title = app_name.get('tagline')
         base_url = settings.BASE_URL
         self.endpoint = f"http://{base_url}" if base_url == '127.0.0.1:8000' else base_url
+        self.content = contents
+        self.menu = None
+
+    def dispatch(self, request, *args, **kwargs):
+        self.previous = request.META.get('HTTP_REFERER')
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -150,6 +159,8 @@ class DefaultMixin(object):
         context['breadcrumb_subtitle'] = None
         context['has_meta'] = False
         context['meta_name'] = dict()
+        context['menus'] = Menu.objects.filter(language__code=self.request.LANGUAGE_CODE)
+        context['path_info'] = f"{self.request.path_info}".replace("/", "")
         return context
 
 
