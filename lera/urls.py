@@ -28,6 +28,6 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),
     path('i18n/', include('django.conf.urls.i18n')),
 ]
-if settings.DEBUG:
+if '127.0.0.1:8000' in settings.BASE_URL:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
