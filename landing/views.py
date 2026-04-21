@@ -1,8 +1,9 @@
 from django.views.generic import TemplateView, CreateView
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language, gettext_lazy as _
 from django.urls import reverse_lazy
 from lera.mixins import LandingDataMixin
 from .forms import ContactUsForm
+from cms.models import Page
 
 
 class LandingPageView(LandingDataMixin, TemplateView):
@@ -10,8 +11,16 @@ class LandingPageView(LandingDataMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(LandingPageView, self).get_context_data(**kwargs)
+        page = self.content.get("pages")[0]
+        pg = Page.objects.filter(menu__uri='landing').get(menu__language__code=get_language())
         context['page_title'] = f"{self.app_name.get('portal_app')} | {self.page_title}"
         context['uri'] = 'landing'
+        context['content'] = page.get("section")
+        context['hero'] = pg.sections.first().subsections.first()
+        context['sections'] = pg.sections.all_sections()
+        context['featured_product'] = pg.sections.get_section('featured_product').subsections.first()
+        context['challenges'] = pg.sections.get_section('strategic_challenges').subsections.first()
+        context['our_team'] = pg.sections.get_section('our_team').subsections.first()
         return context
 
 
