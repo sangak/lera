@@ -317,11 +317,11 @@ PGCRYPTO_DEFAULT_KEY = SECRET_KEY
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://*.lera.or.id/",
-#     "https://lera.or.id/",
-#     "https://www.lera.or.id/"
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.lera.or.id/",
+    "https://lera.or.id/",
+    "https://www.lera.or.id/"
+]
 # if not BASE_URL == '127.0.0.1:8000':
 #     # from lera.aws.conf import *
 #
