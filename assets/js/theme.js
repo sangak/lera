@@ -757,6 +757,9 @@ const theme = {
                     el.closest('form').submit();
                 }
             })
+        },
+        swiper: (el, options) => {
+            const swiper = new Swiper(el, options);
         }
     },
     components: {}
