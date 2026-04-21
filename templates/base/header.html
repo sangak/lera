@@ -22,23 +22,22 @@
 
         <div id="navigation">
             <ul class="navigation-menu nav-right flex-grow-1 nav-light">
-                <li{% if uri == 'program' %} class="active"{% endif %}>
-                    <a data-href="{% url 'landing:program' %}" class="sub-menu-item">{% trans 'Program' %}</a>
-                </li>
-                <li{% if uri == 'about-us' %} class="active"{% endif %}>
-                    <a data-href="{% url 'landing:about' %}" class="sub-menu-item">{% trans 'Tentang Kami' %}</a>
-                </li>
-                <li class="has-submenu parent-parent-menu-item menu">
-                    <a href="javascript:void(0)">{% trans 'Berita & Artikel' %}<span class="menu-arrow"></span></a>
-                    <ul class="submenu">
-                        <li><a data-href="#" class="sub-menu-item">Berita</a></li>
-                        <li><a data-href="#" class="sub-menu-item">Blog</a></li>
-                        <li><a data-href="#" class="sub-menu-item">Publikasi</a></li>
-                    </ul>
-                </li>
-                <li{% if uri == 'contact-us' %} class="active"{% endif %}>
-                    <a data-href="{% url 'landing:contact' %}" class="sub-menu-item">{% trans 'Hubungi Kami' %}</a>
-                </li>
+                {% for menu in menus %}
+                    {% if not menu.uri == 'landing' %}
+                        {% if menu.is_navbar %}
+                            <li{% if menu.has_submenu %} class="has-submenu parent-parent-menu-item menu{% if menu.uri == path_info %} active{% endif %}"{% else %}{% if menu.uri == path_info %} class="active"{% endif %}{% endif %}>
+                                <a {% if not menu.has_submenu %}data-href="{{ menu.link }}" {% endif %}class="sub-menu-item">{{ menu.title }}</a>
+                                {% if menu.has_submenu %}
+                                    <ul class="submenu">
+                                        {% for submenu in menu.submenu.all %}
+                                            <li><a data-href="{{ submenu.link }}" class="sub-menu-item">{{ submenu.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
             </ul>
         </div>
     </div>

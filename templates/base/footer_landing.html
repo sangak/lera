@@ -42,20 +42,24 @@
                 <div class="col-6 col-lg py-5 mb-sm-0">
                     <span class="text-cap fw-bold">{% trans 'Lebih Lanjut Tentang LERA' %}</span>
                     <ul class="list-menu">
-                        <li><a href="{% url 'landing:program' %}">{% trans 'Program' %}</a></li>
-                        <li><a href="{% url 'landing:about' %}">{% trans 'Tentang Kami' %}</a></li>
-                        <li><a href="#">{% trans 'Berita & Artikel' %}</a></li>
-                        <li><a href="{% url 'landing:contact' %}">{% trans 'Hubungi Kami' %}</a></li>
+                        {% for menu in menus %}
+                            {% if not menu.uri == 'landing' %}
+                                {% if menu.is_navbar %}
+                                    <li{% if menu.uri == path_info %} class="active"{% endif %}><a href="{{menu.link}}">{{ menu.title }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
 
                 <div class="col-6 col-lg py-5 mb-sm-0">
                     <span class="text-cap">Support</span>
                     <ul class="list-menu">
-                        <li><a href="#">{% trans 'Bantuan' %}</a></li>
-                        <li><a href="#">{% trans 'Keamanan Data' %}</a></li>
-                        <li><a href="#">{% trans 'Privasi dan Kebijakan' %}</a></li>
-                        <li><a href="#">{% trans 'Syarat & Ketentuan' %}</a></li>
+                        {% for menu in menus %}
+                                {% if not menu.is_navbar %}
+                                    <li><a href="{{ menu.link }}">{{ menu.title }}</a></li>
+                                {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -63,8 +67,11 @@
         <div class="row align-items-md-center py-3">
             <div class="col-md mb-3 mb-md-0">
                 <ul class="list-footer">
-                    <li><a href="#">Privacy and Policy</a></li>
-                    <li><a href="#">Terms</a></li>
+                    {% for menu in menus %}
+                        {% if menu.uri == 'privacy-policy' or menu.uri == 'terms-conditions' %}
+                            <li><a href="{{menu.link}}">{{ menu.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
                     <li>© {% get_current_year %} {{ app_name.portal_app }}</li>
                 </ul>
             </div>
