@@ -2,26 +2,31 @@
 {% load static i18n user_agents %}
 {% block contents %}
 
-    <section class="bg-half-260 d-table w-100 img-load" data-background-image="{% static 'img/bg/charity.jpg' %}" style="min-height: 100vh;">
+    <section class="bg-half-260 d-table w-100 img-load" data-background-image="{{ hero.image.url }}">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row mt-5">
                 <div class="col-12">
                     <div class="title-heading">
                         <h1 class="heading fw-bold text-white title-dark mb-4">
-                            {% trans 'Mentransformasi Investasi CSR' %}<br/>
-                            {% trans 'Menjadi Dampak Nyata dan Berkelanjutan' %}
+                            {{ hero.title|safe }}
                         </h1>
                         <p class="text-white-50 para-desc mb-0">
-                            {% trans 'LERA menghubungkan visi strategis korporasi dengan kebutuhan riil masyakarat di lingkungan melalui pendekatan profesional berbasis bukti.' %}
+                            {{ hero.brief_desc|safe }}
                         </p>
                         <div class="mt-4 pt-2">
-                            <a href="#" class="btn btn-primary d-none d-md-inline-block">
-                                {% trans 'Konsultasi Strategi Anda' %}
-                            </a>
-                            <a href="#" class="btn {% if request|is_mobile %}btn-primary{% else %}btn-outline-light-shades{% endif %} ms-0 ms-md-2">
-                                {% trans 'Pelajari Layanan Kami' %}
-                            </a>
+                            {% for btn in hero.button.all %}
+                                {% if forloop.first %}
+                                    <a href="{{ btn.link }}" class="btn btn-primary d-none d-md-inline-block">
+                                        {{ btn.title }}
+                                    </a>
+                                {% else %}
+                                    <a href="{{ btn.link }}" class="btn {% if request|is_mobile %}btn-primary{% else %}btn-outline-light-shades{% endif %} ms-0 ms-md-2">
+                                        {{ btn.title }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
@@ -32,13 +37,56 @@
     <section class="section">
         <div class="container">
             <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="features-absolute rounded shadow p-md-5 p-4 bg-white">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="section-title">
+                                    <span class="badge py-2 px-3 bg-soft-primary rounded-lg">
+                                        {% trans 'Penggalangan Dana' %}
+                                    </span>
+                                    <h6 class="mb-1 mt-3">{% trans 'Wujudkan Dampak Nyata Bersama LERA' %}</h6>
+                                    <h4 class="title fw-semibold mb-3">{% trans 'Kontribusi Mitra' %}</h4>
+                                    <p class="text-muted para-desc mb-0">
+                                        {% trans 'Kami mengundang Anda untuk berpartisipasi mendukung inisiatif pembangunan masyarakat dan pemberdayaan ekonomi lokal.' %}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mt-4 pt-2 mt-md-0 pt-md-0">
+                                <div class="progress-box mt-4">
+                                    <div class="progress rounded-md" style="height: 10px;">
+                                        <div class="progress-bar position-relative bg-primary rounded-md"
+                                             style="width:60%;">
+                                            <div class="progress-value d-block text-muted h6 mt-n-2">
+                                                <span>Total yang terkumpul<br/>Rp 600.000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <h6 class="title text-muted text-start mb-0">0</h6>
+                                        <h6 class="title text-muted text-end mb-0">Rp 1.000.000,-</h6>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 text-lg-end">
+                                    <a href="#" class="btn btn-primary">{% trans 'Donasi' %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="section-title text-center mb-4 pb-2">
                         <h2 class="title fw-semibold mb-4">
-                            {% trans 'Produk & Layanan Unggulan' %}
+                            {{ featured_product.title }}
                         </h2>
                         <p class="para-desc text-muted mx-auto mb-0">
-                            {% trans 'Tingkatkan wawasan Anda bersama kami. Pelajari segala hal tentang <em>machine learning</em> dalam menyelesaikan permasalahan sosial.' %}
+                            {{ featured_product.brief_desc|safe }}
                         </p>
                     </div>
                 </div>
@@ -46,101 +94,23 @@
                     <div class="row">
                         <div class="col-12 mt-4">
                             <div class="tiny-three-item">
-                                <div class="tiny-slide">
-                                    <div class="blog blog-primary causes position-relative overflow-hidden p-2">
-                                        <div>
-                                            <img data-src="{% static 'img/charity/cause01.jpg' %}" class="img-load img-fluid rounded" alt="">
-                                        </div>
-                                        <div class="causes-content bg-white p-4 shadow-sm rounded">
-                                            <a data-href="#" class="h5 title text-dark d-block mb-0">
-                                                {% trans 'Strategi & Tata Kelola CSR' %}
-                                            </a>
-                                            <p class="text-muted mt-2 mb-0">
-                                                {% trans 'Penyusunan <em>Theory of Change</em>, Audit Materialitas, dan Roadmap CSR jangka panjang.' %}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tiny-slide">
-                                    <div class="blog blog-primary causes position-relative overflow-hidden p-2">
-                                        <div>
-                                            <img data-src="{% static 'img/charity/cause02.jpg' %}" class="img-load img-fluid rounded" alt="">
-                                        </div>
-                                        <div class="causes-content bg-white p-4 shadow-sm rounded">
-                                            <a data-href="#" class="h5 title text-dark d-block mb-0">
-                                                {% trans 'Kinerja Sosial & Stakeholder' %}
-                                            </a>
-                                            <p class="text-muted mt-2 mb-0">
-                                                {% trans '<em>Community Mapping</em>, mitigasi konflik, dan penguatan <em>Social License to Operate</em> (SLO) untuk perusahaan dan masyarakat.' %}
-                                            </p>
+                                {% for carousel in featured_product.details.all %}
+                                    <div class="tiny-slide">
+                                        <div class="blog blog-primary causes position-relative overflow-hidden p-2">
+                                            <div>
+                                                <img data-src="{{ carousel.image.url }}" class="img-load img-fluid rounded" alt="{{ carousel.alt }}">
+                                            </div>
+                                            <div class="causes-content bg-white p-4 shadow-sm rounded">
+                                                <a data-href="#" class="h5 title text-dark d-block mb-0">
+                                                    {{ carousel.title }}
+                                                </a>
+                                                <p class="text-muted mt-2 mb-0">
+                                                    {{ carousel.brief_desc|safe }}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="tiny-slide">
-                                    <div class="blog blog-primary causes position-relative overflow-hidden p-2">
-                                        <div>
-                                            <img data-src="{% static 'img/charity/cause03.jpg' %}" class="img-load img-fluid rounded" alt="">
-                                        </div>
-                                        <div class="causes-content bg-white p-4 shadow-sm rounded">
-                                            <a data-href="#" class="h5 title text-dark d-block mb-0">
-                                                {% trans "Pemberdayaan Masyarakat" %}
-                                            </a>
-                                            <p class="text-muted mt-2 mb-0">
-                                                {% trans 'Pengembangan ekonomi lokal, UMKM, serta pemberdayaan perempuan dan pemuda.' %}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tiny-slide">
-                                    <div class="blog blog-primary causes position-relative overflow-hidden p-2">
-                                        <div>
-                                            <img data-src="{% static 'img/charity/cause04.jpg' %}" class="img-load img-fluid rounded" alt="">
-                                        </div>
-                                        <div class="causes-content bg-white p-4 shadow-sm rounded">
-                                            <a data-href="#" class="h5 title text-dark d-block mb-0">
-                                                {% trans 'Layanan Lingkungan & Iklim' %}
-                                            </a>
-                                            <p class="text-muted mt-2 mb-0">
-                                                {% trans 'Perhitungan jejak karbon, strategi emisi, dan dukungan Program Penilaian Peringkat Kinerja Perusahaan.' %}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tiny-slide">
-                                    <div class="blog blog-primary causes position-relative overflow-hidden p-2">
-                                        <div>
-                                            <img data-src="{% static 'img/charity/cause05.jpg' %}" class="img-load img-fluid rounded" alt="">
-                                        </div>
-                                        <div class="causes-content bg-white p-4 shadow-sm rounded">
-                                            <a data-href="#" class="h5 title text-dark d-block mb-0">
-                                                {% trans 'Monitoring dan Evaluasi (M&E)' %}
-                                            </a>
-                                            <p class="text-muted mt-2 mb-0">
-                                                {% trans 'Dengan metode SROI <em>(Social Return of Investment)</em>, Dashboard kinerja, Pelaporan Dampak & <em>Evidence-based programming</em>.' %}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tiny-slide">
-                                    <div class="blog blog-primary causes position-relative overflow-hidden p-2">
-                                        <div>
-                                            <img data-src="{% static 'img/charity/cause06.jpg' %}" class="img-load img-fluid rounded" alt="">
-                                        </div>
-                                        <div class="causes-content bg-white p-4 shadow-sm rounded">
-                                            <a data-href="#" class="h5 title text-dark d-block mb-0">
-                                                {% trans 'Branding & Komunikasi' %}
-                                            </a>
-                                            <p class="text-muted mt-2 mb-0">
-                                                {% trans 'Mengemas komitmen CSR menjadi reputasi positif yang kredibel bagi publik' %}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -153,200 +123,70 @@
                 <div class="col-12">
                     <div class="section-title text-center mb-4 pb-2">
                         <h2 class="title fw-semibold mb-4">
-                            {% trans 'Tantangan Strategis CSR' %}
+                            {{ challenges.title }}
                         </h2>
                         <p class="para-desc text-muted mx-auto mb-0">
-                            {% trans 'Banyak organisasi menghadapi celah kapasitas dalam mengelola CSR. Kami hadir untuk menjawab 7 tantangan inti.' %}
+                            {{ challenges.brief_desc|safe }}
                         </p>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
+                {% for detail in challenges.details.all %}
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
                         <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="basil:book-open-outline" width="32" height="32"></iconify-icon>
+                            <iconify-icon icon="{{ detail.icon_name }}" width="32" height="32"></iconify-icon>
                         </div>
 
                         <div class="content mt-4">
                             <p class="text-muted">
-                                {% trans 'Transisi dari kepatuhan (compliance) menuju strategis bisnis.' %}
+                                {{ detail.title|safe }}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
-                        <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="f7:cube" width="32" height="32"></iconify-icon>
-                        </div>
-
-                        <div class="content mt-4">
-                            <p class="text-muted">
-                                {% trans 'Fragmentasi keterlibatan pemangku kepentingan.' %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
-                        <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="tabler:home-off" width="32" hight="32"></iconify-icon>
-                        </div>
-
-                        <div class="content mt-4">
-                            <p class="text-muted">
-                                {% trans 'Standarisasi pengukuran dampak yang belum optimal.' %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
-                        <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="hugeicons:give-blood" width="32" height="32"></iconify-icon>
-                        </div>
-
-                        <div class="content mt-4">
-                            <p class="text-muted">
-                                {% trans 'Tingginya ekspektasi pasar terhadap standar ESG.' %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
-                        <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="hugeicons:give-blood" width="32" height="32"></iconify-icon>
-                        </div>
-
-                        <div class="content mt-4">
-                            <p class="text-muted">
-                                {% trans 'Mitigasi konflik sosial dan risiko operasional.' %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
-                        <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="hugeicons:give-blood" width="32" height="32"></iconify-icon>
-                        </div>
-
-                        <div class="content mt-4">
-                            <p class="text-muted">
-                                {% trans 'Tekanan peningkatan <em>sustainability rating</em>.' %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
-                        <div class="fea-icon bg-soft rounded-md mx-auto">
-                            <iconify-icon icon="hugeicons:give-blood" width="32" height="32"></iconify-icon>
-                        </div>
-
-                        <div class="content mt-4">
-                            <p class="text-muted">
-                                {% trans 'Transparansi reputasi di era digital.' %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
     <section class="section bg-secondary-subtle">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="section-title text-center mb-4 pb-2">
-                        <h6 class="text-primary">Blog</h6>
-                        <h4 class="title fw-semibold mt-2 mb-3">
-                            {% trans 'Blog & Info Terkini' %}
-                        </h4>
-                        <p class="text-muted para-desc mx-auto mb-0">
-                            {% trans 'Informasi terkini mengenai aksi kemanusiaan, transparansi program, dan cerita inspiratif dari penerima manfaat.' %}
-                        </p>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title text-center mb-4 pb-2">
+                            <h2 class="title fw-semibold mb-4">
+                                {{ our_team.title }}
+                            </h2>
+                            <p class="text-muted para-desc mx-auto mb-0">
+                                {{ our_team.brief_desc|safe }}
+                            </p>
+                        </div>
                     </div>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    {% for team in our_team.details.all %}
+                    <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                        <div class="card team team-primary rounded team-two overflow-hidden shadow">
+                            <div class="team-image">
+                                <img src="{{ team.image.url }}" class="img-fluid" alt="{{ team.alt_text }}">
+                                <div class="overlay"></div>
+                            </div>
+                            <ul class="list-unstyled social-icon team-social mb-0">
+                                <li><a href="{{ team.facebook }}" class="rounded"><iconify-icon icon="line-md:facebook" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                <li class="mt-1"><a href="{{ team.instagram }}" class="rounded"><iconify-icon icon="line-md:instagram" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                <li class="mt-1"><a href="{{ team.twitter }}" class="rounded"><iconify-icon icon="line-md:twitter-x" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                <li class="mt-1"><a href="{{ team.linkedin }}" class="rounded"><iconify-icon icon="line-md:linkedin" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                            </ul>
+                            <div class="team-content">
+                                <a href="javascript:void(0)" class="h6 text-uppercase d-block mb-0 text-white title-dark">{{ team.title }}</a>
+                                <small class="text-white title-dark">{{ team.brief_desc }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="card blog blog-primary shadow rounded overflow-hidden">
-                        <div class="image position-relative overflow-hidden">
-                            <img src="{% static 'img/charity/news01.jpg' %}" class="img-fluid" alt="">
-
-                            <div class="blog-tag">
-                                <a href="javascript:void(0)" class="badge text-bg-light">{% trans 'Rumah' %}</a>
-                            </div>
-                        </div>
-
-                        <div class="card-body content">
-                            <a href="#" class="h5 title text-dark d-block mb-0">
-                                {% trans 'Tumbuh Kembang Anak' %}
-                            </a>
-                            <p class="text-muted mt-2 mb-2">
-                                {% trans 'Memastikan anak-anak mendapatkan nutrisi dan perawatan terbaik untuk tumbuh menjadi generasi yang kuat.' %}
-                            </p>
-                            <a href="#" class="link text-dark fs-6">{% trans 'Selengkapnya' %}</a>
-                        </div>
-                    </div>
-                </div><!--end col-->
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="card blog blog-primary shadow rounded overflow-hidden">
-                        <div class="image position-relative overflow-hidden">
-                            <img src="{% static 'img/charity/news02.jpg' %}" class="img-fluid" alt="">
-
-                            <div class="blog-tag">
-                                <a href="javascript:void(0)" class="badge text-bg-light">{% trans 'Air Bersih' %}</a>
-                            </div>
-                        </div>
-
-                        <div class="card-body content">
-                            <a href="#" class="h5 title text-dark d-block mb-0">
-                                {% trans 'Air Bersih & Sanitasi' %}
-                            </a>
-                            <p class="text-muted mt-2 mb-2">
-                                {% trans 'Menjamin akses air bersih yang layak dan berkelanjutan bagi komunitas yang membutuhkan.' %}
-                            </p>
-                            <a href="#" class="link text-dark">
-                                {% trans 'Selengkapnya' %}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="card blog blog-primary shadow rounded overflow-hidden">
-                        <div class="image position-relative overflow-hidden">
-                            <img src="{% static 'img/charity/news03.jpg' %}" class="img-fluid" alt="">
-
-                            <div class="blog-tag">
-                                <a href="javascript:void(0)" class="badge text-bg-light">{% trans 'Dunia Literasi' %}</a>
-                            </div>
-                        </div>
-
-                        <div class="card-body content">
-                            <a href="#" class="h5 title text-dark d-block mb-0">
-                                {% trans 'Literasi Anak Sumatera' %}
-                            </a>
-                            <p class="text-muted mt-2 mb-2">
-                                {% trans 'Dukungan pendidikan dan literasi berkelanjutan bagi anak-anak terdampak di wilayah terpencil di Sumatera.' %}
-                            </p>
-                            <a href="#" class="link text-dark">
-                                {% trans 'Selengkapnya' %}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 {% endblock %}
