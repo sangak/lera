@@ -5,6 +5,7 @@ from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
+
 @register.simple_tag
 def settings_value(name):
     return getattr(settings, name, "")
@@ -14,6 +15,11 @@ def settings_value(name):
 @stringfilter
 def trim(value):
     return "".join(value.split())
+
+
+@register.filter
+def get_section(section, name):
+    return section.get_section(name).subsections
 
 
 @register.simple_tag
