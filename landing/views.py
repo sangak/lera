@@ -11,11 +11,9 @@ class LandingPageView(LandingDataMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(LandingPageView, self).get_context_data(**kwargs)
-        page = self.content.get("pages")[0]
         pg = Page.objects.filter(menu__uri='landing').get(menu__language__code=get_language())
         context['page_title'] = f"{self.app_name.get('portal_app')} | {self.page_title}"
         context['uri'] = 'landing'
-        context['content'] = page.get("section")
         context['hero'] = pg.sections.first().subsections.first()
         context['sections'] = pg.sections.all_sections()
         context['featured_product'] = pg.sections.get_section('featured_product').subsections.first()
@@ -29,8 +27,10 @@ class ProgramPageView(LandingDataMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProgramPageView, self).get_context_data(**kwargs)
+        pg = Page.objects.filter(menu__uri='program').get(menu__language__code=get_language())
         context['page_title'] = f"{_('Program')} | {self.page_title}"
         context['uri'] = 'program'
+        context['sections'] = pg.sections
         context['has_breadcrumb'] = True
         context['breadcrumb_title'] = _('Apa yang Kami Lakukan')
         context['breadcrumb_subtitle'] = _('Pengalaman Kami')
@@ -46,8 +46,10 @@ class AboutUsPageView(LandingDataMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AboutUsPageView, self).get_context_data(**kwargs)
+        pg = Page.objects.filter(menu__uri='about-us').get(menu__language__code=get_language())
         context['page_title'] = f"{_('Tentang Kami')} | {self.page_title}"
         context['uri'] = 'about-us'
+        context['sections'] = pg.sections
         context['has_breadcrumb'] = True
         context['breadcrumb_title'] = _('Tentang Kami')
         context['breadcrumb_subtitle'] = 'Siapa Kami?'
