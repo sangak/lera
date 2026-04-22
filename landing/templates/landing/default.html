@@ -100,7 +100,7 @@
                                             <div>
                                                 <img data-src="{{ carousel.image.url }}" class="img-load img-fluid rounded" alt="{{ carousel.alt }}">
                                             </div>
-                                            <div class="causes-content bg-white p-4 shadow-sm rounded">
+                                            <div class="causes-content bg-white p-4 shadow-sm rounded d-flex flex-column align-content-stretch">
                                                 <a data-href="#" class="h5 title text-dark d-block mb-0">
                                                     {{ carousel.title }}
                                                 </a>
@@ -133,7 +133,7 @@
             </div>
             <div class="row justify-content-center">
                 {% for detail in challenges.details.all %}
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-5">
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-5 d-flex align-content-stretch">
                     <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
                         <div class="fea-icon bg-soft rounded-md mx-auto">
                             <iconify-icon icon="{{ detail.icon_name }}" width="32" height="32"></iconify-icon>
