@@ -148,7 +148,7 @@ class Section(BaseModel):
     objects = SectionManager()
 
     def __str__(self):
-        return self.title
+        return f"{self.page.title}: {self.title}"
 
     class Meta:
         ordering = ['id']
@@ -201,7 +201,7 @@ class SubSection(BaseModel):
     button = models.ManyToManyField(Button, related_name="subsections", blank=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.section}: {self.title}"
 
 
 def pre_save_subsection_create(instance, *args, **kwargs):
@@ -237,7 +237,8 @@ class Detail(BaseModel):
     linkedin = models.CharField(max_length=255, default='#')
 
     def __str__(self):
-        return self.title
+        section = self.subsection.section
+        return f"{section}: {self.brief_desc[:50]}" if self.title is None else f"{section}: {self.title}"
 
     class Meta:
         ordering = ['id']
