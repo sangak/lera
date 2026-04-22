@@ -1,0 +1,78 @@
+{% extends 'base/index.html' %}
+{% load static pengaturan %}
+{% block contents %}
+    <div class="section">
+        {% with sections|get_section:"visi-1" as vis1 %}
+        <div class="container">
+            <div class="row">
+                {% for ls in vis1.first.details.all %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="features feature-{% if forloop.first %}primary{% elif forloop.last %}warning{% else %}dark{% endif %} border-0 d-flex">
+                        <div class="fea-icon rounded-circle text-white title-dark">
+                            <iconify-icon icon="{{ ls.icon_name }}" width="32" height="32"></iconify-icon>
+                        </div>
+
+                        <div class="content flex-1 ms-3">
+                            <a href="" class="title h5 text-dark">{{ ls.title}}</a>
+                            <p class="text-muted mt-2">
+                                {{ ls.brief_desc|safe }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endwith %}
+        {% with sections|get_section:"visi-2" as vis2 %}
+        <div class="container mt-100 mt-60">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <img data-src="{{ vis2.first.image.url }}"
+                         class="img-fluid img-load rounded shadow border" alt="">
+                </div>
+                <div class="col-lg-7 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="section-title ms-lg-5">
+                        <h2 class="title mb-4 fw-semibold">
+                            {{ vis2.first.title }}
+                        </h2>
+                        {{ vis2.first.brief_desc|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endwith %}
+
+        <div class="container mt-100 mt-60">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <blockquote class="text-center mx-auto blockquote" style="max-width: 90%">
+                                {% with sections|get_section:"visi-3" as vis3 %}
+                                <h2 class="h2 title fw-semibold d-block">{{ vis3.first.title }}</h2>
+                                {{ vis3.first.brief_desc|safe }}
+                                {% endwith %}
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                {% with sections|get_section:"visi-4" as vis4 %}
+                <div class="col-md-6">
+                    <h2 class="title mb-4 fw-semibold">{{ vis4.first.title }}</h2>
+                    <p>
+                        {{ vis4.first.brief_desc|safe }}
+                    </p>
+                    <ul class="list-checked-bg-primary list-unstyled">
+                        {% for ls in vis4.first.details.all %}
+                        <li class="list-checked-item">
+                            {{ ls.brief_desc|safe }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

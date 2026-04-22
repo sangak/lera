@@ -2,7 +2,7 @@
 {% load static i18n user_agents %}
 {% block contents %}
 
-    <section class="bg-half-260 d-table w-100 img-load" data-background-image="{{ hero.image.url }}">
+    <section class="bg-half-260 d-table w-100 vh-100 img-load" data-background-image="{{ hero.image.url }}">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row mt-5">
@@ -36,49 +36,6 @@
 
     <section class="section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="features-absolute rounded shadow p-md-5 p-4 bg-white">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="section-title">
-                                    <span class="badge py-2 px-3 bg-soft-primary rounded-lg">
-                                        {% trans 'Penggalangan Dana' %}
-                                    </span>
-                                    <h6 class="mb-1 mt-3">{% trans 'Wujudkan Dampak Nyata Bersama LERA' %}</h6>
-                                    <h4 class="title fw-semibold mb-3">{% trans 'Kontribusi Mitra' %}</h4>
-                                    <p class="text-muted para-desc mb-0">
-                                        {% trans 'Kami mengundang Anda untuk berpartisipasi mendukung inisiatif pembangunan masyarakat dan pemberdayaan ekonomi lokal.' %}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mt-4 pt-2 mt-md-0 pt-md-0">
-                                <div class="progress-box mt-4">
-                                    <div class="progress rounded-md" style="height: 10px;">
-                                        <div class="progress-bar position-relative bg-primary rounded-md"
-                                             style="width:60%;">
-                                            <div class="progress-value d-block text-muted h6 mt-n-2">
-                                                <span>Total yang terkumpul<br/>Rp 600.000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between mt-2">
-                                        <h6 class="title text-muted text-start mb-0">0</h6>
-                                        <h6 class="title text-muted text-end mb-0">Rp 1.000.000,-</h6>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 text-lg-end">
-                                    <a href="#" class="btn btn-primary">{% trans 'Donasi' %}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-100 mt-60">
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="section-title text-center mb-4 pb-2">
@@ -133,8 +90,8 @@
             </div>
             <div class="row justify-content-center">
                 {% for detail in challenges.details.all %}
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-5 d-flex align-content-stretch">
-                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 text-center rounded-md shadow border-0">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-5 d-flex align-content-stretch">
+                    <div class="card features feature-primary features-classic pt-4 px-3 pb-2 w-100 text-center rounded-md shadow border-0">
                         <div class="fea-icon bg-soft rounded-md mx-auto">
                             <iconify-icon icon="{{ detail.icon_name }}" width="32" height="32"></iconify-icon>
                         </div>
@@ -166,27 +123,54 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center align-items-center">
+                    {% if request|is_mobile %}
+
+                        <div class="swiper team-swiper px-3">
+                            <div class="swiper-wrapper">
+                    {% endif %}
                     {% for team in our_team.details.all %}
-                    <div class="col-lg-3 col-md-6 mt-4 pt-2">
-                        <div class="card team team-primary rounded team-two overflow-hidden shadow">
-                            <div class="team-image">
-                                <img src="{{ team.image.url }}" class="img-fluid" alt="{{ team.alt_text }}">
-                                <div class="overlay"></div>
-                            </div>
-                            <ul class="list-unstyled social-icon team-social mb-0">
-                                <li><a href="{{ team.facebook }}" class="rounded"><iconify-icon icon="line-md:facebook" class="fea icon-sm fea-social"></iconify-icon></a></li>
-                                <li class="mt-1"><a href="{{ team.instagram }}" class="rounded"><iconify-icon icon="line-md:instagram" class="fea icon-sm fea-social"></iconify-icon></a></li>
-                                <li class="mt-1"><a href="{{ team.twitter }}" class="rounded"><iconify-icon icon="line-md:twitter-x" class="fea icon-sm fea-social"></iconify-icon></a></li>
-                                <li class="mt-1"><a href="{{ team.linkedin }}" class="rounded"><iconify-icon icon="line-md:linkedin" class="fea icon-sm fea-social"></iconify-icon></a></li>
-                            </ul>
-                            <div class="team-content">
-                                <a href="javascript:void(0)" class="h6 text-uppercase d-block mb-0 text-white title-dark">{{ team.title }}</a>
-                                <small class="text-white title-dark">{{ team.brief_desc }}</small>
+                        {% if request|is_mobile %}
+                            <div class="swiper-slide d-flex align-items-center justify-content-center">
+                        {% endif %}
+                        <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                            <div class="card team team-primary rounded team-two overflow-hidden shadow">
+                                <div class="team-image">
+                                    <img src="{{ team.image.url }}" class="img-fluid w-100" alt="{{ team.alt_text }}">
+                                    <div class="overlay"></div>
+                                </div>
+                                <ul class="list-unstyled social-icon team-social mb-0">
+                                    <li><a href="{{ team.facebook }}" class="rounded"><iconify-icon icon="line-md:facebook" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                    <li class="mt-1"><a href="{{ team.instagram }}" class="rounded"><iconify-icon icon="line-md:instagram" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                    <li class="mt-1"><a href="{{ team.twitter }}" class="rounded"><iconify-icon icon="line-md:twitter-x" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                    <li class="mt-1"><a href="{{ team.linkedin }}" class="rounded"><iconify-icon icon="line-md:linkedin" class="fea icon-sm fea-social"></iconify-icon></a></li>
+                                </ul>
+                                <div class="team-content">
+                                    <a href="javascript:void(0)" class="h6 text-uppercase d-block mb-0 text-white title-dark">{{ team.title }}</a>
+                                    <small class="text-white title-dark">{{ team.brief_desc }}</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        {% if request|is_mobile %}
+                            </div>
+                        {% endif %}
                     {% endfor %}
+                    {% if request|is_mobile %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
     </section>
+{% endblock %}
+
+{% block javascript %}
+    {% if request|is_mobile %}
+        <script>
+            const swiper = new Swiper('.team-swiper', {
+                spaceBetween: 30,
+                centeredSlides: true,
+                loop: true
+            })
+        </script>
+    {% endif %}
 {% endblock %}

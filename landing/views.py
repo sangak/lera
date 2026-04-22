@@ -36,7 +36,7 @@ class ProgramPageView(LandingDataMixin, TemplateView):
         context['breadcrumb_subtitle'] = _('Pengalaman Kami')
         context['breadcrumbs'] = (
             {'link': f'{reverse_lazy("landing:index")}', 'title': _('Beranda')},
-            {'link': '#', 'title': _('Program')},
+            {'link': '#', 'title': 'Program'},
         )
         return context
 
@@ -78,5 +78,24 @@ class ContactUsPageView(LandingDataMixin, CreateView):
         context['breadcrumbs'] = (
             {'link': f'{reverse_lazy("landing:index")}', 'title': _('Beranda')},
             {'link': '#', 'title': _('Hubungi Kami')},
+        )
+        return context
+
+
+class VisionPageView(LandingDataMixin, TemplateView):
+    template_name = 'landing/vision.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(VisionPageView, self).get_context_data(**kwargs)
+        pg = Page.objects.filter(menu__uri='vision-mission').get(menu__language__code=get_language())
+        context['page_title'] = f"{_('Visi dan Misi')} | {self.page_title}"
+        context['uri'] = 'vision-mission'
+        context['sections'] = pg.sections
+        context['has_breadcrumb'] = True
+        context['breadcrumb_title'] = _('Visi dan Misi')
+        context['breadcrumb_subtitle'] = _('Berpusat pada Kebutuhan Masyarakat')
+        context['breadcrumbs'] = (
+            {'link': f'{reverse_lazy("landing:index")}', 'title': _('Beranda')},
+            {'link': '#', 'title': _('Visi & Misi')},
         )
         return context
