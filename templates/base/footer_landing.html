@@ -39,8 +39,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-6 col-lg py-5 mb-sm-0">
+                <div class="col-12 d-block d-md-none">
                     <span class="text-cap fw-bold">{% trans 'Lebih Lanjut Tentang LERA' %}</span>
+                </div>
+                <div class="col-6 col-lg py-0 py-md-5 mb-sm-0">
+                    <span class="text-cap fw-bold d-none d-md-block">{% trans 'Lebih Lanjut Tentang LERA' %}</span>
                     <ul class="list-menu">
                         {% for menu in menus %}
                             {% if not menu.uri == 'landing' %}
@@ -52,8 +55,8 @@
                     </ul>
                 </div>
 
-                <div class="col-6 col-lg py-5 mb-sm-0">
-                    <span class="text-cap">Support</span>
+                <div class="col-6 col-lg py-0 py-md-5 mb-sm-0">
+                    <span class="text-cap d-none d-md-block">Support</span>
                     <ul class="list-menu">
                         {% for menu in menus %}
                                 {% if not menu.is_navbar %}
