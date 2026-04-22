@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ page_title }}</title>
+    <title>{% if page_title %}{{ page_title }}{% else %}{% trans 'Ops, maaf atas ketidaknyamanan ini' %}{% endif %}</title>
     {% if uri %}
         {% if has_meta %}
             {% for meta in meta_name %}
