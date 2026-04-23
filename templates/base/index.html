@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n pengaturan clicky %}
 <!DOCTYPE html>{% get_current_language as bahasa %}
 <html lang="{{ bahasa }}">
 <head>
@@ -12,10 +12,14 @@
             {% endfor %}
         {% endif %}
     {% endif %}
+    {% if not '127.0.0.1:8000' in end_point %}
+        <script async data-id="101504934" src="/17bd18f842e3c3.js"></script>
+    {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
     {% block stylesheet %}{% endblock %}
 </head>
+{% clicky %}
 <body{% if css_body is not None %} class="{{ css_body }}"{% endif %}{% if body_id is not None %} id="{{ body_id }}"{% endif %}>
     {% if not full_screen %}
         {% if show_navbar and navbar_type == 'main' %}
