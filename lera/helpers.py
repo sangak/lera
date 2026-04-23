@@ -50,7 +50,9 @@ class BaseTables(tables.Table):
             }
         }
         row_attrs = {
-            "data-id": lambda record: record.uid,
+            "id": lambda record: record.uid,
+            "class": "justify-content-center align-items-center",
+            "data-form-url": lambda record: record.get_absolute_url(),
         }
 
 
