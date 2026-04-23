@@ -7,11 +7,6 @@ register = template.Library()
 
 
 @register.simple_tag
-def settings_value(name):
-    return getattr(settings, name, "")
-
-
-@register.simple_tag
 @stringfilter
 def trim(value):
     return "".join(value.split())
