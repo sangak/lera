@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
 
+    'analytical',
     'bootstrap_modal_forms',
     # 'corsheaders',
     'crispy_forms',
@@ -317,11 +318,15 @@ PGCRYPTO_DEFAULT_KEY = SECRET_KEY
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.lera.or.id/",
-    "https://lera.or.id/",
-    "https://www.lera.or.id/"
-]
+if not BASE_URL == '127.0.0.1:8000':
+    CSRF_TRUSTED_ORIGINS = [
+        "https://*.lera.or.id/",
+        "https://lera.or.id/",
+        "https://www.lera.or.id/"
+    ]
+
+CLICKY_SITE_ID = '101504934'
+ANALYTICAL_INTERNAL_IPS = ['127.0.0.1', '182.253.55.74']
 # if not BASE_URL == '127.0.0.1:8000':
 #     # from lera.aws.conf import *
 #
