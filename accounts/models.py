@@ -81,6 +81,9 @@ class User(AbstractBaseUser, BaseModel):
     def __str__(self):
         return self.full_name
 
+    def get_absolute_url(self):
+        return reverse('accounts:update', kwargs={'uid': self.uid})
+
     @property
     def full_name(self):
         if self.last_name:
