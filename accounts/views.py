@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, Http404
 from django_filters.views import FilterView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
-from bootstrap_modal_forms.generic import BSModalCreateView
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from lera.helpers import get_session
@@ -94,4 +94,24 @@ class AccountCreateView(LoginRequiredMixin, PortalPageMixin, NextUrlMixin, BSMod
         context = super().get_context_data(**kwargs)
         context['form_title'] = _('Pengguna Baru')
         context['form_btn_submit'] = _('Tambah User')
+        return context
+
+
+class AccountUpdateView(LoginRequiredMixin, PortalPageMixin, NextUrlMixin, BSModalUpdateView):
+    template_name = 'accounts/create.html'
+    success_url = reverse_lazy('accounts:user-management')
+    form_class = AccountManagementCreateForm
+    success_message = _('Account updated successfully')
+
+    def get_object(self, queryset = ...):
+        uid = self.kwargs.get('uid')
+        qs = User.objects.filter(uid=uid)
+        if qs.exists():
+            return qs.first()
+        raise Http404
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_title'] = _('Update Data Pengguna')
+        context['form_btn_submit'] = _('Update')
         return context
