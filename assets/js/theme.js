@@ -157,7 +157,9 @@ const theme = {
             }),
             [].slice.call(document.querySelectorAll('table tbody tr')).forEach(item => {
                 item.ondblclick = () => {
-                    window.location.href = item.getAttribute('data-id');
+
+                    // theme.helpers.bootstrapModalForms(document.getElementById(id));
+                    window.location.href = item.getAttribute('data-form-url');
                 }
             }),
             [].slice.call(document.querySelectorAll('input.text-prepend.is-invalid')).forEach(item => {
@@ -686,12 +688,10 @@ const theme = {
         pristineCheck: function (selector, config, btnSubmit=null) {
             const form = document.getElementById(selector);
             let pristine = new Pristine(form, config);
-            console.log(`submit: ${btnSubmit}`);
-            form.addEventListener('submit', ev => {
+
+            form.addEventListener('change', ev => {
                 let valid = pristine.validate();
-                console.log(valid);
                 if (valid) {
-                    console.log(btnSubmit);
                     if (!(btnSubmit === null)) {
                         const btn = document.getElementById(btnSubmit);
                         btn.classList.remove('disabled');
