@@ -37,7 +37,14 @@ class AccountListTable(BaseTables):
         "th": {"style": "width: 80px"},
         "td": {"class": "text-center"},
     })
-    action = tables.Column(empty_values=(), verbose_name="")
+    action = tables.Column(empty_values=(), verbose_name="", attrs={
+        "th": {
+            'style': 'width: 40px',
+        },
+        "td": {
+            'class': 'text-center',
+        }
+    })
 
     def __init__(self, *args, **kwargs):
         super(AccountListTable, self).__init__(*args, **kwargs)
@@ -71,9 +78,13 @@ class AccountListTable(BaseTables):
 
     def render_action(self, value):
         btn = '''
-           <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-sm btn-secondary">Left</button>
-              <button type="button" class="btn btn-sm btn-secondary">Right</button>
+           <div class="btn-group" role="group" aria-label="btn-actions">
+              <button type="button" class="btn btn-sm" title="Edit">
+                <iconify-icon icon="ic:outline-edit" width="24" height="24"></iconify-icon>
+              </button>
+              <button type="button" class="btn btn-sm" title="Delete">
+                <iconify-icon icon="material-symbols:delete-outline" width="24" height="24" class="text-danger"></iconify-icon>
+              </button>
             </div>
         '''
         return format_html(btn)
