@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.urls import path
 from landing.views import (
     LandingPageView, ContactUsPageView,
@@ -13,5 +14,7 @@ urlpatterns = [
     path('program/', ProgramPageView.as_view(), name='program'),
     path('vision-mission/', VisionPageView.as_view(), name='vision-mission'),
     path('site.webmanifest/', WebManifestPageView.as_view(), name='webmanifest'),
+    path('googleec0ab87b7b26f6c3.html/', lambda r: HttpResponse("google-site-verification: googleec0ab87b7b26f6c3.html",
+                                                     content_type="text/html")),
 ]
 
