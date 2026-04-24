@@ -1,6 +1,9 @@
-from django.views.generic import TemplateView, CreateView
+from django.http import JsonResponse
+from django.views.generic import TemplateView, CreateView, View
 from django.utils.translation import get_language, gettext_lazy as _
 from django.urls import reverse_lazy
+from django.conf import settings
+from django.conf.urls.static import static
 from lera.mixins import LandingDataMixin
 from .forms import ContactUsForm
 from cms.models import Page
@@ -99,3 +102,28 @@ class VisionPageView(LandingDataMixin, TemplateView):
             {'link': '#', 'title': _('Visi & Misi')},
         )
         return context
+
+
+class WebManifestPageView(View):
+
+    def get(self, request, *args, **kwargs):
+        data = {
+            "name": "",
+            "short_name": "",
+            "icons": [
+                {
+                    "src": f"{settings.STATIC_URL + 'img/favicon/android-chrome-192x192.png'}",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": f"{settings.STATIC_URL + 'img/favicon/android-chrome-512x512.png'}",
+                    "sizes": "512x512", "type": "image/png"
+                }
+            ],
+            "theme_color": "#ffffff",
+            "background_color": "#ffffff",
+            "display": "standalone"
+        }
+
+        return JsonResponse(data, content_type='application/manifest+json')
