@@ -8,8 +8,8 @@
                 </a>
             </li>
         </ul>
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
+        <ul class="navbar-nav d-flex flex-row justify-content-center">
+            <li class="nav-item me-5">
                 <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                     <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                     <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
@@ -29,8 +29,8 @@
                     </div>
                     {% endif %}
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                    <li class="user-header text-bg-primary">
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end position-absolute">
+                    <li class="user-header bg-primary text-white">
                         {% if user.profile.check_photo_is_available %}
                         <img
                                 src="./assets/img/user2-160x160.jpg"

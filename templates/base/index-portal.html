@@ -17,17 +17,6 @@
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     {% block stylesheet %}{% endblock %}
-    <link rel="preload" href="{% static 'css/portal-style.css' %}" as="style" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-      crossorigin="anonymous"
-    />
     <link rel="stylesheet" href="{% static 'css/portal-style.css' %}" />
 </head>
 <body class="{{ css_body }}">
@@ -69,13 +58,9 @@
         {% endif %}
     {% if not fullscreen %}</div>{% endif %}
     {% if show_sidebar %}
-    {% if bootstrap_modal_forms %}
-        {% include 'base/portal/modal-bootstrap-forms.html' %}
-    {% endif %}
-    <script
-      src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
-      crossorigin="anonymous"
-    ></script>
+        {% if bootstrap_modal_forms %}
+            {% include 'base/portal/modal-bootstrap-forms.html' %}
+        {% endif %}
     {% endif %}
     <script src="{% static 'js/core.min.js' %}"></script>
     <script src="{% static 'js/adminlte.js' %}"></script>

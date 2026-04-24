@@ -6,6 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% if page_title %}{{ page_title }}{% else %}{% trans 'Ops, maaf atas ketidaknyamanan ini' %}{% endif %}</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="/site.webmanifest">
     {% if uri %}
         {% if has_meta %}
             {% for meta in meta_name %}
@@ -17,7 +24,11 @@
         <script async data-id="101504934" src="/17bd18f842e3c3.js"></script>
     {% endif %}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    {% if portal_page %}
+        <link rel="stylesheet" href="{% static 'css/portal-style.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    {% endif %}
     {% block stylesheet %}{% endblock %}
 </head>
 {% clicky %}
