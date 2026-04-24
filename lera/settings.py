@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django_select2',
     'multi_form_view',
     'pgcrypto',
+    'robots',
     'storages',
     'thumbnails',
 
@@ -94,13 +95,23 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates']
         ,
-        'APP_DIRS': True,
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                (
+                    'django.template.loaders.cached.Loader',
+                    [
+                        'django.template.loaders.app_directories.Loader',
+                        'django.template.loaders.filesystem.Loader'
+                    ]
+                )
+            ]
         },
     },
 ]
@@ -327,15 +338,8 @@ if not BASE_URL == '127.0.0.1:8000':
 
 CLICKY_SITE_ID = '101504934'
 ANALYTICAL_INTERNAL_IPS = ['127.0.0.1', '182.253.55.74']
-# if not BASE_URL == '127.0.0.1:8000':
-#     # from lera.aws.conf import *
-#
-#     CORS_ALLOW_CREDENTIALS = True
-#     CORS_ORIGIN_ALLOW_ALL = False
-#     CORS_ALLOWED_ORIGINS = [
-#         "https://lera.or.id",
-#         "https://www.lera.or.id"
-#     ]
 
-
-    # THUMBNAILS['STORAGE']['BACKEND'] = 'storages.backends.s3boto3.S3Boto3Storage'
+ROBOTS_SITEMAP_URLS = ['https://lera.or.id/sitemap.xml']
+ROBOTS_SITEMAP_VIEW_NAME = 'cached_sitemap'
+ROBOTS_USE_HOST = False
+ROBOTS_USE_SCHEME_IN_HOST = False

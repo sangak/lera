@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+
 from django.contrib.sitemaps.views import sitemap
+from django.views.decorators.cache import cache_page
 from django.views.generic import RedirectView
 from .sitemaps import StaticSitemap
 
@@ -33,7 +35,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),
     path('i18n/', include('django.conf.urls.i18n')),
-    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path('robots.txt/', include('robots.urls')),
+    path('sitemap.xml/', cache_page(60)(sitemap), {'sitemaps': sitemaps}, name='cached_sitemap'),
 ]
 if '127.0.0.1:8000' in settings.BASE_URL:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

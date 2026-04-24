@@ -22,5 +22,6 @@ class StaticSitemap(Sitemap):
         return reverse(item)
 
     def lastmod(self, item):
+        print(item)
         now = pendulum.now('Asia/Jakarta')
         return now

@@ -36,6 +36,7 @@ django-htmx==1.27.0
 django-multi-form-view==2.0.1
 django-pgcrypto==3.1.0
 django-pymemcache==1.0.0
+django-robots==6.1
 django-select2==8.4.8
 django-storages==1.14.6
 django-tables2==2.8.0
