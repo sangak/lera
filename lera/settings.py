@@ -336,10 +336,12 @@ if not BASE_URL == '127.0.0.1:8000':
         "https://www.lera.or.id/"
     ]
 
-CLICKY_SITE_ID = '101504934'
+CLICKY_SITE_ID = config('CLICKY_SITE_ID')
 ANALYTICAL_INTERNAL_IPS = ['127.0.0.1', '182.253.55.74']
 
 ROBOTS_SITEMAP_URLS = ['https://lera.or.id/sitemap.xml']
 ROBOTS_SITEMAP_VIEW_NAME = 'cached_sitemap'
 ROBOTS_USE_HOST = False
 ROBOTS_USE_SCHEME_IN_HOST = False
+
+GOOGLE_ANALYTICS_GTAG_PROPERTY_ID = config('GOOGLE_ANALYTICS_GTAG_PROPERTY_ID')

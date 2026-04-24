@@ -3,7 +3,6 @@
 <!DOCTYPE html>{% get_current_language as bahasa %}
 <html lang="{{ bahasa }}">
 <head>
-    {% analytical_head_top %}
     {% google_analytics_gtag %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,11 +31,9 @@
         <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
     {% endif %}
     {% block stylesheet %}{% endblock %}
-    {% analytical_head_bottom %}
 </head>
 {% clicky %}
 <body{% if css_body is not None %} class="{{ css_body }}"{% endif %}{% if body_id is not None %} id="{{ body_id }}"{% endif %}>
-    {% analytical_body_top %}
     {% if not full_screen %}
         {% if show_navbar and navbar_type == 'main' %}
             {% include 'base/header.html' %}
@@ -93,6 +90,5 @@
             {% endfor %}
         {% endif %}
     </script>
-    {% analytical_body_bottom %}
 </body>
 </html>
